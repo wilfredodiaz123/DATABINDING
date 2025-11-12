@@ -1,0 +1,107 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DataBinding.Collection.Views.MainPage"
+             xmlns:models="clr-namespace:DataBinding.Collection.Models"
+             Title="Origenes De Paquetes NuGet"
+             BackgroundColor="LightSlateGrey">
+
+    <Grid
+        RowDefinitions="Auto,*,Auto"
+        Padding="16">
+        <Grid
+            ColumnDefinitions="*,Auto,Auto"
+            ColumnSpacing="4">
+            <Label
+                Text="Origenes de Paquetes"
+                TextColor="Black"
+                FontAttributes="Bold"
+                FontSize="26"
+                VerticalOptions="Center"/>
+            <Button Grid.Column="1"
+                    Text="+"
+                    BackgroundColor="AntiqueWhite"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    Clicked="OnAgregarButtonClicked"
+                    />
+            <Button Grid.Column="2"
+                    Text="x"
+                    BackgroundColor="AntiqueWhite"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    Clicked="OnDeleteButtonClicked"/>
+        </Grid>
+        <CollectionView
+                    Grid.Row="1"
+                    SelectionMode="Single"
+                    BackgroundColor="DimGray"
+                    SelectionChanged="OrigenesListView_SelectionChanged"
+                    EmptyView ="Aun no hay registros de paquete!"
+                    x:Name="OrigenesListView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type models:OrigenDePaquete}">
+                    <Border
+                        Stroke="Blue"
+                        Padding="8"
+                        <Grid
+                            RowDefinitions="Auto,*"
+                            ColumnDefinitions="Auto,Auto">
+                        <CheckBox
+                                Grid.RowSpan="2"
+                                IsChecked="False"/>
+                        <Label
+                                Grid.Column="1"
+                                Text="Empty"/>
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Text="Empty 2"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+    </CollectionView>
+
+    <Grid
+                Grid.Row="2"
+                RowDefinitions="Auto,Auto,Auto"
+                ColumnDefinitions="Auto,*,Auto"
+                RowSpacing="8"
+                ColumnSpacing="8">
+        <Label
+                    Text="Nombre:"
+                    VerticalOptions="Center"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    FontSize="16"/>
+        <Entry
+                    Grid.Column="1"
+                    x:Name="NombreEntry"/>
+        <Label
+                    Grid.Row="1"
+                    Text="Origen:"
+                    FontAttributes="Bold"
+                    TextColor="Black"
+                    FontSize="16"/>
+        <Entry
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    x:Name="OrigenEntry"/>
+        <Button
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Text="Actualizar"
+                    TextColor="Green"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    BackgroundColor="WhiteSmoke"
+                    Clicked="OnButtonClicked"
+                    />
+
+    </Grid>
+
+    </Grid>
+
+</ContentPage>
